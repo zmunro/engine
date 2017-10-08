@@ -9,8 +9,8 @@
 class OctfBall : private OctfElementDynamic {
     
 public:
-    OctfBall(ballModel, int x, int y);
-    ~OctfBall();
+    OctfBall(b2World* world, b2BodyDef ballBodyDef, float32 radius);
+    ~OctfBall() final;
 };
 
 #endif
