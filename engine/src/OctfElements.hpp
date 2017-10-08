@@ -14,14 +14,9 @@ class OctfElement {
 
 public:
     OctfElement();
-    OctfElement(b2World* aWorld);
-    ~OctfElement();
-
-// find a better way to do this
-protected:
-    b2World* _gameWorld;
     void setBody(b2Body* toSet);
-    
+    virtual ~OctfElement() = 0;
+
 private:
     b2Body* _body;
 };
@@ -34,7 +29,7 @@ class OctfElementDynamic : public OctfElement {
 public:
     //maybe assert _body is dynamic
     OctfElementDynamic();
-    ~OctfElementDynamic();
+    virtual ~OctfElementDynamic() = 0;
     
 
 // self explanatory
@@ -58,7 +53,7 @@ class OctfElementStatic : public OctfElement {
 
 public:
     OctfElementStatic();
-    ~OctfElementStatic();
+    virtual ~OctfElementStatic() = 0;
 };
 
 #endif

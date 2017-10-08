@@ -1,5 +1,5 @@
 CPP := g++
-CPPFLAGS := -std=c++14 -pthread
+CPPFLAGS := -std=gnu++11 -pthread
 
 OBJ := obj
 BIN := bin
