@@ -3,6 +3,7 @@
 
 class b2World;
 class b2Body;
+class b2Vec2;
 
 /* Base class for all things on the map,
  * useful for common methods like logging.
@@ -14,8 +15,9 @@ class OctfElement {
 
 public:
     OctfElement();
+    ~OctfElement();
+    b2Body* getBody();
     void setBody(b2Body* toSet);
-    virtual ~OctfElement() = 0;
 
 private:
     b2Body* _body;
@@ -29,16 +31,19 @@ class OctfElementDynamic : public OctfElement {
 public:
     //maybe assert _body is dynamic
     OctfElementDynamic();
-    virtual ~OctfElementDynamic() = 0;
-    
+    ~OctfElementDynamic();
+
+protected:
+    virtual void moveInDir(b2Vec2 direction) = 0;
 
 // self explanatory
 /*
     void kill();
     void respawn();
     void remove();
-
+*/
 private:
+/*    
     bool _isDead;
     bool _isRespawning;
     bool _isRemoved;
@@ -53,7 +58,7 @@ class OctfElementStatic : public OctfElement {
 
 public:
     OctfElementStatic();
-    virtual ~OctfElementStatic() = 0;
+    ~OctfElementStatic();
 };
 
 #endif

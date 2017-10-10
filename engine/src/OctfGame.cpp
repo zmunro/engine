@@ -22,24 +22,8 @@ OctfGame::OctfGame(gameSettings settings)
 OctfGame::~OctfGame()
 { }
 
-b2BodyDef OctfGame::makeBodyDef(model bodyModel, int x, int y) {
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(x,y);
-    bodyDef.linearDamping = bodyModel.linDamping;
-    bodyDef.angularDamping = bodyModel.linDamping;
-
-    // test these later:
-    /*
-    bodyDef.allowSleep = true;
-    bodyDef.awake = true;
-    bodyDef.bullet = true;
-    */
-}
-
 OctfBall* OctfGame::createBallAtPos(int x, int y) {
-    b2BodyDef ballBodyDef = makeBodyDef(_m_gameSettings.ballModel, x, y);
-    auto& ball = *(new OctfBall(fWorld, ballBodyDef, _m_gameSettings.ballModel.radius));
+    auto& ball = *(new OctfBall(fWorld, x, y, _m_gameSettings.ballModel));
     return &ball;
 }
 
@@ -48,6 +32,8 @@ void OctfGame::advance() {
     print();
     tick();
 }
+
+b2World* OctfGame::getWorld() { return fWorld; }
 
 //this can stay for now until graphical tests
 void OctfGame::print() {

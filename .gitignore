@@ -31,8 +31,15 @@
 *.out
 *.app
 
+# Build
+Box2D/Box2D/Build/make/bin/**
+Box2D/Box2D/Build/make/obj/**
+
 # swap
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
 [._]s[a-v][a-z]
 [._]sw[a-p]
+
+# compilation database
+**/compile_commands.json

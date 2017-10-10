@@ -12,12 +12,23 @@ class b2World;
 class b2Body;
 class OctfBall;
 
+/*   ==== Units ==== 
+ *
+ *      Length: m
+ *      Mass:   Kg
+ *      Time:   s
+ *
+ */
+
+extern float32 CONSTANTS_PI;
+
 typedef struct {
     float32 radius;
     float32 restitution;
     float32 density;
     float32 linDamping;
     float32 angularDamping;
+    float32 accel;
 } model;
 
 typedef struct {
@@ -34,6 +45,7 @@ public:
     void start();
     void print();
     void advance();
+    b2World* getWorld();
 
     const gameSettings getSettings();
     OctfBall* createBallAtPos(int x, int y);
@@ -48,8 +60,6 @@ protected:
     inline void tick() {++fSteps;}
 
 private:
-    static b2BodyDef makeBodyDef(model bodyModel, int x, int y);
-
     b2World* constructWorld();
 
     const gameSettings _m_gameSettings;
