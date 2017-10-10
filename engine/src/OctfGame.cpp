@@ -33,6 +33,8 @@ void OctfGame::advance() {
     tick();
 }
 
+b2World* OctfGame::getWorld() { return fWorld; }
+
 //this can stay for now until graphical tests
 void OctfGame::print() {
   auto body = fWorld->GetBodyList();

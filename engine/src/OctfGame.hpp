@@ -45,6 +45,7 @@ public:
     void start();
     void print();
     void advance();
+    b2World* getWorld();
 
     const gameSettings getSettings();
     OctfBall* createBallAtPos(int x, int y);

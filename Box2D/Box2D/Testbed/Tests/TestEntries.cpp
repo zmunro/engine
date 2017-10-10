@@ -70,9 +70,11 @@
 #include "VaryingRestitution.h"
 #include "VerticalStack.h"
 #include "Web.h"
+#include "OctfBallTest.h"
 
 TestEntry g_testEntries[] =
 {
+    {"Octf Ball test", OctfBallTest::Create},
 	{"Character Collision", CharacterCollision::Create},
 	{"Tiles", Tiles::Create},
 	{"Heavy on Light", HeavyOnLight::Create},
