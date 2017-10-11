@@ -19,9 +19,20 @@ public:
 
         OctfGame* Game(new OctfGame((gameSettings){defaultFR,defaultGrav,defaultBall}));
 
-        m_world = Game->getWorld(); //m_world is protected of Test and is what gets drawn
+        /******************** KEEP THESE LINES SO YOU CAN SEE STUFF IN THE TESTBED********************/
+        this->m_world = Game->getWorld();                     
+        m_destructionListener.test = this;
+        m_world->SetDestructionListener(&m_destructionListener);
+        m_world->SetContactListener(this);
+        m_world->SetDebugDraw(&g_debugDraw);
+        m_bombSpawning = false;
+        m_stepCount = 0;
+        b2BodyDef bodyDef;
+        m_groundBody = m_world->CreateBody(&bodyDef);
+        /*********************************************************************************************/
 
-        Game->createBallAtPos(0.0f,0.0f);
+        // here do stuff that you want to test visually
+        Game->createBallAtPos(0.0f,10.0f);
     }
 
     /* We won't pass settings
