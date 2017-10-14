@@ -22,13 +22,19 @@ int main(int argc, char** argv) {
      * happening
      */
     b2Vec2 defaultGrav(0.0f,-10.0f);
-    constexpr std::pair<int,int> defaultFR(std::make_pair(1,60));
+    constexpr int defaultFR(60);
+    int defaultVelIter = 6;
+    int defaultPosIter = 2;
+    int defaultDur = 12 * 60;
 
-    OctfGame* Game(new OctfGame((gameSettings){defaultFR,defaultGrav,defaultBall}));
+    OctfGame* Game(new OctfGame((gameSettings){defaultFR,
+                                               defaultGrav,
+                                               defaultVelIter,
+                                               defaultPosIter,
+                                               defaultDur,
+                                               defaultBall}));
 
-    Game->createBallAtPos(10.0f,20.0f);
-
-    using rate = std::ratio<defaultFR.first,defaultFR.second>;
+    using rate = std::ratio<1,defaultFR>;
     std::thread([Game]() {
         std::chrono::duration<float32, rate> aStep(1);
         auto x = std::chrono::steady_clock::now() + aStep;

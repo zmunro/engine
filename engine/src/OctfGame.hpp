@@ -32,8 +32,11 @@ typedef struct {
 } model;
 
 typedef struct {
-    std::pair<int,int> framerate;
+    int framerate; //fps
     b2Vec2 gravity;
+    int velIter;
+    int posIter;
+    int gDuration; //in seconds
     model ballModel;
 } gameSettings;
 
@@ -43,13 +46,12 @@ public:
     OctfGame(gameSettings settings);
     ~OctfGame();
     void start();
-    void print();
     void advance();
     b2World* getWorld();
 
     const gameSettings getSettings();
     OctfBall* createBallAtPos(int x, int y);
-    inline bool isDone() {return fSteps > 3 * 60;} 
+    inline bool isDone() {return _cFrames > _m_gameSettings.gDuration * _m_gameSettings.framerate;} 
 
 
 protected:
@@ -57,16 +59,15 @@ protected:
      * eventually be team won or 12 min
      */
 
-    inline void tick() {++fSteps;}
-
 private:
     b2World* constructWorld();
+    inline void tick() {++_cFrames;}
 
     const gameSettings _m_gameSettings;
-    const float32 _m_f32framerate;
+    const float32 _invFramerate;
 
-    b2World* fWorld;
-    uint32_t fSteps;
+    b2World* _m_world;
+    uint32_t _cFrames; //cumulative frames elapsed
 };
 
 #endif

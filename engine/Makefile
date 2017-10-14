@@ -5,7 +5,7 @@ OBJ := obj
 BIN := bin
 SRC := src
 
-EXEC := HW2
+EXEC := Main
 
 SOURCES := $(wildcard $(SRC)/*.cpp)
 OBJECTS := $(SOURCES:$(SRC)/%.cpp=$(OBJ)/%.o)
