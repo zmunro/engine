@@ -41,3 +41,5 @@ To compile and link the engine files, cd to `engine` and run `make`. You need to
 
 If you add some new functionality and want to add a visual test for it, write a new file in Testbed/Tests called "MyTest.h", for example, and build Box2D again.
 Run the Testbed as described above and you should see your test in the dropdown menu.
+
+When testing the engine, controls are WASD
